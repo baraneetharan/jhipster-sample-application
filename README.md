@@ -1,4 +1,4 @@
-# CI Badge
+## CI Badge
 ![CI](https://github.com/baraneetharan/jhipster-sample-application/workflows/CI/badge.svg)
 
 # jhipdemo
