@@ -26,7 +26,7 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "baraneejhipstersampleapp"
         heroku_email: "baraneetharan@live.com"
-        usedocker: true
+        usedocker: false
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
