@@ -1,0 +1,33 @@
+{
+  "name": "Author",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "notice",
+      "otherEntityRelationshipName": "author",
+      "relationshipName": "notice",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200806081649",
+  "entityTableName": "author",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
