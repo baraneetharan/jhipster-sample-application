@@ -16,6 +16,18 @@
                 <dd>
                     <span>{{ notice.description }}</span>
                 </dd>
+                <dt><span jhiTranslate="jhipdemoApp.notice.author">Author</span></dt>
+                <dd>
+                    <div *ngIf="notice.author">
+                        <a [routerLink]="['/author', notice.author?.id, 'view']">{{ notice.author?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipdemoApp.notice.board">Board</span></dt>
+                <dd>
+                    <div *ngIf="notice.board">
+                        <a [routerLink]="['/board', notice.board?.id, 'view']">{{ notice.board?.id }}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

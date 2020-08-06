@@ -1,6 +1,5 @@
 package com.mycompany.myapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
@@ -24,10 +23,6 @@ public class Author implements Serializable {
 
     @Column(name = "last_name")
     private String lastName;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "authors", allowSetters = true)
-    private Notice notice;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -62,19 +57,6 @@ public class Author implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public Notice getNotice() {
-        return notice;
-    }
-
-    public Author notice(Notice notice) {
-        this.notice = notice;
-        return this;
-    }
-
-    public void setNotice(Notice notice) {
-        this.notice = notice;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

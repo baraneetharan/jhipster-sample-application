@@ -7,6 +7,12 @@ import { Observable } from 'rxjs';
 
 import { INotice, Notice } from 'app/shared/model/notice.model';
 import { NoticeService } from './notice.service';
+import { IAuthor } from 'app/shared/model/author.model';
+import { AuthorService } from 'app/entities/author/author.service';
+import { IBoard } from 'app/shared/model/board.model';
+import { BoardService } from 'app/entities/board/board.service';
+
+type SelectableEntity = IAuthor | IBoard;
 
 @Component({
   selector: 'jhi-notice-update',
@@ -14,18 +20,32 @@ import { NoticeService } from './notice.service';
 })
 export class NoticeUpdateComponent implements OnInit {
   isSaving = false;
+  authors: IAuthor[] = [];
+  boards: IBoard[] = [];
 
   editForm = this.fb.group({
     id: [],
     title: [],
     description: [],
+    author: [],
+    board: [],
   });
 
-  constructor(protected noticeService: NoticeService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected noticeService: NoticeService,
+    protected authorService: AuthorService,
+    protected boardService: BoardService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ notice }) => {
       this.updateForm(notice);
+
+      this.authorService.query().subscribe((res: HttpResponse<IAuthor[]>) => (this.authors = res.body || []));
+
+      this.boardService.query().subscribe((res: HttpResponse<IBoard[]>) => (this.boards = res.body || []));
     });
   }
 
@@ -34,6 +54,8 @@ export class NoticeUpdateComponent implements OnInit {
       id: notice.id,
       title: notice.title,
       description: notice.description,
+      author: notice.author,
+      board: notice.board,
     });
   }
 
@@ -57,6 +79,8 @@ export class NoticeUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       title: this.editForm.get(['title'])!.value,
       description: this.editForm.get(['description'])!.value,
+      author: this.editForm.get(['author'])!.value,
+      board: this.editForm.get(['board'])!.value,
     };
   }
 
@@ -74,5 +98,9 @@ export class NoticeUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: SelectableEntity): any {
+    return item.id;
   }
 }

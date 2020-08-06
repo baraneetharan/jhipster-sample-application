@@ -12,10 +12,18 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "author",
       "otherEntityRelationshipName": "notice",
-      "relationshipName": "author"
+      "relationshipName": "author",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "board",
+      "otherEntityRelationshipName": "noticeList",
+      "relationshipName": "board",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20200806081749",
