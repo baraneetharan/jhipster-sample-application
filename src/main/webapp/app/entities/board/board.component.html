@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="jhipdemoApp.notice.home.title">Notices</span>
+        <span jhiTranslate="jhipdemoApp.board.home.title">Boards</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-notice" [routerLink]="['/notice/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-board" [routerLink]="['/board/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span  jhiTranslate="jhipdemoApp.notice.home.createLabel">
-            Create a new Notice
+            <span  jhiTranslate="jhipdemoApp.board.home.createLabel">
+            Create a new Board
             </span>
         </button>
     </h2>
@@ -14,48 +14,46 @@
 
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="notices?.length === 0">
-        <span jhiTranslate="jhipdemoApp.notice.home.notFound">No notices found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="boards?.length === 0">
+        <span jhiTranslate="jhipdemoApp.board.home.notFound">No boards found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="notices && notices.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="boards && boards.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.title">Title</span></th>
-                    <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.description">Description</span></th>
-                    <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.author">Author</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipdemoApp.board.title">Title</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipdemoApp.board.noticeList">Notice List</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let notice of notices ;trackBy: trackId">
-                    <td><a [routerLink]="['/notice', notice.id, 'view']">{{ notice.id }}</a></td>
-                    <td>{{ notice.title }}</td>
-                    <td>{{ notice.description }}</td>
+                <tr *ngFor="let board of boards ;trackBy: trackId">
+                    <td><a [routerLink]="['/board', board.id, 'view']">{{ board.id }}</a></td>
+                    <td>{{ board.title }}</td>
                     <td>
-                        <div *ngIf="notice.author">
-                            <a [routerLink]="['/author', notice.author?.id, 'view']" >{{ notice.author?.id }}</a>
+                        <div *ngIf="board.noticeList">
+                            <a [routerLink]="['/notice', board.noticeList?.id, 'view']" >{{ board.noticeList?.id }}</a>
                         </div>
                     </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/notice', notice.id, 'view']"
+                                    [routerLink]="['/board', board.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/notice', notice.id, 'edit']"
+                                    [routerLink]="['/board', board.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(notice)"
+                            <button type="submit" (click)="delete(board)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

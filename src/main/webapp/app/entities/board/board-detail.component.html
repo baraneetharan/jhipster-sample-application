@@ -1,20 +1,22 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="author">
-            <h2><span jhiTranslate="jhipdemoApp.author.detail.title">Author</span> {{ author.id }}</h2>
+        <div *ngIf="board">
+            <h2><span jhiTranslate="jhipdemoApp.board.detail.title">Board</span> {{ board.id }}</h2>
 
             <hr>
 
             <jhi-alert-error></jhi-alert-error>
 
             <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="jhipdemoApp.author.firstName">First Name</span></dt>
+                <dt><span jhiTranslate="jhipdemoApp.board.title">Title</span></dt>
                 <dd>
-                    <span>{{ author.firstName }}</span>
+                    <span>{{ board.title }}</span>
                 </dd>
-                <dt><span jhiTranslate="jhipdemoApp.author.lastName">Last Name</span></dt>
+                <dt><span jhiTranslate="jhipdemoApp.board.noticeList">Notice List</span></dt>
                 <dd>
-                    <span>{{ author.lastName }}</span>
+                    <div *ngIf="board.noticeList">
+                        <a [routerLink]="['/notice', board.noticeList?.id, 'view']">{{ board.noticeList?.id }}</a>
+                    </div>
                 </dd>
             </dl>
 
@@ -25,7 +27,7 @@
             </button>
 
             <button type="button"
-                    [routerLink]="['/author', author.id, 'edit']"
+                    [routerLink]="['/board', board.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>

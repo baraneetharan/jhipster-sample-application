@@ -7,11 +7,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * A Notice.
+ * A Board.
  */
 @Entity
-@Table(name = "notice")
-public class Notice implements Serializable {
+@Table(name = "board")
+public class Board implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,12 +22,9 @@ public class Notice implements Serializable {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description")
-    private String description;
-
     @ManyToOne
-    @JsonIgnoreProperties(value = "notices", allowSetters = true)
-    private Author author;
+    @JsonIgnoreProperties(value = "boards", allowSetters = true)
+    private Notice noticeList;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -42,7 +39,7 @@ public class Notice implements Serializable {
         return title;
     }
 
-    public Notice title(String title) {
+    public Board title(String title) {
         this.title = title;
         return this;
     }
@@ -51,30 +48,17 @@ public class Notice implements Serializable {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public Notice getNoticeList() {
+        return noticeList;
     }
 
-    public Notice description(String description) {
-        this.description = description;
+    public Board noticeList(Notice notice) {
+        this.noticeList = notice;
         return this;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public Notice author(Author author) {
-        this.author = author;
-        return this;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
+    public void setNoticeList(Notice notice) {
+        this.noticeList = notice;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
@@ -83,10 +67,10 @@ public class Notice implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Notice)) {
+        if (!(o instanceof Board)) {
             return false;
         }
-        return id != null && id.equals(((Notice) o).id);
+        return id != null && id.equals(((Board) o).id);
     }
 
     @Override
@@ -97,10 +81,9 @@ public class Notice implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Notice{" +
+        return "Board{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
-            ", description='" + getDescription() + "'" +
             "}";
     }
 }
