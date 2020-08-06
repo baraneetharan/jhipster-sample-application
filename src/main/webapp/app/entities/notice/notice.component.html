@@ -25,6 +25,7 @@
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.title">Title</span></th>
                     <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.description">Description</span></th>
+                    <th scope="col" ><span jhiTranslate="jhipdemoApp.notice.author">Author</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -33,6 +34,11 @@
                     <td><a [routerLink]="['/notice', notice.id, 'view']">{{ notice.id }}</a></td>
                     <td>{{ notice.title }}</td>
                     <td>{{ notice.description }}</td>
+                    <td>
+                        <div *ngIf="notice.author">
+                            <a [routerLink]="['/author', notice.author?.id, 'view']" >{{ notice.author?.id }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

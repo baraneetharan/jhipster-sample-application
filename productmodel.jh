@@ -15,8 +15,8 @@ title String
 description String
 }
 
-relationship OneToMany {
-    Notice{author(firstName)} to Author
+relationship ManyToOne {
+    Notice{author} to Author
 }
 
 entity Owner {
