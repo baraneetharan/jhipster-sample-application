@@ -18,7 +18,8 @@
       },
       "title": "Title",
       "description": "Description",
-      "author": "Author"
+      "author": "Author",
+      "board": "Board"
     }
   }
 }
