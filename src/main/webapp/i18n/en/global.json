@@ -12,6 +12,7 @@
         "notice": "Notice",
         "owner": "Owner",
         "pet": "Pet",
+        "board": "Board",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
