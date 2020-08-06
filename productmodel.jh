@@ -4,3 +4,18 @@ entity Product {
     rating Integer
     url String
 }
+
+entity Author {
+	firstName String
+	lastName String
+}
+
+entity Notice {
+title String
+description String
+author Author
+}
+
+relationship OneToMany {
+    Notice{author} to Author
+}
