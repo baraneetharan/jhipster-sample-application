@@ -22,14 +22,6 @@
                     <input type="text" class="form-control" name="lastName" id="field_lastName"
                            formControlName="lastName"/>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jhipdemoApp.author.notice" for="field_notice">Notice</label>
-                    <select class="form-control" id="field_notice" name="notice" formControlName="notice">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="noticeOption.id === editForm.get('notice')!.value?.id ? editForm.get('notice')!.value : noticeOption" *ngFor="let noticeOption of notices; trackBy: trackById">{{ noticeOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>
