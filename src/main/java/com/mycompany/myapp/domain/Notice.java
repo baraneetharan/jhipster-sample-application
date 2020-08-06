@@ -1,11 +1,10 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A Notice.
@@ -26,8 +25,9 @@ public class Notice implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "notice")
-    private Set<Author> authors = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties(value = "notices", allowSetters = true)
+    private Author author;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -64,29 +64,17 @@ public class Notice implements Serializable {
         this.description = description;
     }
 
-    public Set<Author> getAuthors() {
-        return authors;
+    public Author getAuthor() {
+        return author;
     }
 
-    public Notice authors(Set<Author> authors) {
-        this.authors = authors;
+    public Notice author(Author author) {
+        this.author = author;
         return this;
     }
 
-    public Notice addAuthor(Author author) {
-        this.authors.add(author);
-        author.setNotice(this);
-        return this;
-    }
-
-    public Notice removeAuthor(Author author) {
-        this.authors.remove(author);
-        author.setNotice(null);
-        return this;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
+    public void setAuthor(Author author) {
+        this.author = author;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

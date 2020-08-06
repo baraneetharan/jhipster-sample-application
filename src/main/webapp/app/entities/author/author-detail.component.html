@@ -16,12 +16,6 @@
                 <dd>
                     <span>{{ author.lastName }}</span>
                 </dd>
-                <dt><span jhiTranslate="jhipdemoApp.author.notice">Notice</span></dt>
-                <dd>
-                    <div *ngIf="author.notice">
-                        <a [routerLink]="['/notice', author.notice?.id, 'view']">{{ author.notice?.id }}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

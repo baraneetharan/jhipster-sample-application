@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 
 import { INotice, Notice } from 'app/shared/model/notice.model';
 import { NoticeService } from './notice.service';
+import { IAuthor } from 'app/shared/model/author.model';
+import { AuthorService } from 'app/entities/author/author.service';
 
 @Component({
   selector: 'jhi-notice-update',
@@ -14,18 +16,27 @@ import { NoticeService } from './notice.service';
 })
 export class NoticeUpdateComponent implements OnInit {
   isSaving = false;
+  authors: IAuthor[] = [];
 
   editForm = this.fb.group({
     id: [],
     title: [],
     description: [],
+    author: [],
   });
 
-  constructor(protected noticeService: NoticeService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected noticeService: NoticeService,
+    protected authorService: AuthorService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ notice }) => {
       this.updateForm(notice);
+
+      this.authorService.query().subscribe((res: HttpResponse<IAuthor[]>) => (this.authors = res.body || []));
     });
   }
 
@@ -34,6 +45,7 @@ export class NoticeUpdateComponent implements OnInit {
       id: notice.id,
       title: notice.title,
       description: notice.description,
+      author: notice.author,
     });
   }
 
@@ -57,6 +69,7 @@ export class NoticeUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       title: this.editForm.get(['title'])!.value,
       description: this.editForm.get(['description'])!.value,
+      author: this.editForm.get(['author'])!.value,
     };
   }
 
@@ -74,5 +87,9 @@ export class NoticeUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
+  }
+
+  trackById(index: number, item: IAuthor): any {
+    return item.id;
   }
 }
