@@ -8,6 +8,10 @@
       "entities": {
         "main": "Entities",
         "product": "Product",
+        "author": "Author",
+        "notice": "Notice",
+        "owner": "Owner",
+        "pet": "Pet",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

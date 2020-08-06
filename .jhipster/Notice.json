@@ -1,0 +1,32 @@
+{
+  "name": "Notice",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "author",
+      "otherEntityRelationshipName": "notice",
+      "relationshipName": "author"
+    }
+  ],
+  "changelogDate": "20200806081749",
+  "entityTableName": "notice",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
