@@ -16,9 +16,16 @@ description String
 }
 
 relationship OneToMany {
-    Notice{author(firstName)} to Author
+    Notice{author(id)} to Author
 }
 
+entity Board {
+title String
+}
+
+relationship ManyToOne {
+    Board{noticeList} to Notice
+}
 entity Owner {
     name String required
 }
