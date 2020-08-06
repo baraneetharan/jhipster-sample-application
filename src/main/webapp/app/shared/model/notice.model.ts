@@ -4,9 +4,9 @@ export interface INotice {
   id?: number;
   title?: string;
   description?: string;
-  authors?: IAuthor[];
+  author?: IAuthor;
 }
 
 export class Notice implements INotice {
-  constructor(public id?: number, public title?: string, public description?: string, public authors?: IAuthor[]) {}
+  constructor(public id?: number, public title?: string, public description?: string, public author?: IAuthor) {}
 }

@@ -1,26 +1,22 @@
 {
-  "name": "Notice",
+  "name": "Board",
   "fields": [
     {
       "fieldName": "title",
-      "fieldType": "String"
-    },
-    {
-      "fieldName": "description",
       "fieldType": "String"
     }
   ],
   "relationships": [
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "author",
-      "otherEntityRelationshipName": "notice",
-      "relationshipName": "author",
+      "otherEntityName": "notice",
+      "otherEntityRelationshipName": "board",
+      "relationshipName": "noticeList",
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20200806081749",
-  "entityTableName": "notice",
+  "changelogDate": "20200806121049",
+  "entityTableName": "board",
   "dto": "no",
   "pagination": "no",
   "service": "no",

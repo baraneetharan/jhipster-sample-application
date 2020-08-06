@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 
 import { IAuthor, Author } from 'app/shared/model/author.model';
 import { AuthorService } from './author.service';
-import { INotice } from 'app/shared/model/notice.model';
-import { NoticeService } from 'app/entities/notice/notice.service';
 
 @Component({
   selector: 'jhi-author-update',
@@ -16,27 +14,18 @@ import { NoticeService } from 'app/entities/notice/notice.service';
 })
 export class AuthorUpdateComponent implements OnInit {
   isSaving = false;
-  notices: INotice[] = [];
 
   editForm = this.fb.group({
     id: [],
     firstName: [],
     lastName: [],
-    notice: [],
   });
 
-  constructor(
-    protected authorService: AuthorService,
-    protected noticeService: NoticeService,
-    protected activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
-  ) {}
+  constructor(protected authorService: AuthorService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ author }) => {
       this.updateForm(author);
-
-      this.noticeService.query().subscribe((res: HttpResponse<INotice[]>) => (this.notices = res.body || []));
     });
   }
 
@@ -45,7 +34,6 @@ export class AuthorUpdateComponent implements OnInit {
       id: author.id,
       firstName: author.firstName,
       lastName: author.lastName,
-      notice: author.notice,
     });
   }
 
@@ -69,7 +57,6 @@ export class AuthorUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       firstName: this.editForm.get(['firstName'])!.value,
       lastName: this.editForm.get(['lastName'])!.value,
-      notice: this.editForm.get(['notice'])!.value,
     };
   }
 
@@ -87,9 +74,5 @@ export class AuthorUpdateComponent implements OnInit {
 
   protected onSaveError(): void {
     this.isSaving = false;
-  }
-
-  trackById(index: number, item: INotice): any {
-    return item.id;
   }
 }
