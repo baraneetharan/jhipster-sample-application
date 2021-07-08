@@ -1,0 +1,15 @@
+entity Author {
+	firstName String
+	lastName String
+}
+
+entity Notice {
+title String
+description String
+author Author
+}
+
+entity Board {
+title String
+noticeList List<Notice>
+}
